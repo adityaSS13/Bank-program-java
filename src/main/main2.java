@@ -17,22 +17,16 @@ import src.main.model.account.Loan;
 import src.main.model.account.Savings;
 
 public class main2 {
-    static String ACCOUNTS_FILE = "C:/Users/Aditya-Shirish-PC/Desktop/udemy java/most recent (28 Nov)/Java-Bootcamp-Resources-main/Module 2 - Object Oriented Programming/10. Inheritance/challenge/bank-management/src/main/data/accounts.txt";
-    static String TRANSACTIONS_FILE = "C:/Users/Aditya-Shirish-PC/Desktop/udemy java/most recent (28 Nov)/Java-Bootcamp-Resources-main/Module 2 - Object Oriented Programming/10. Inheritance/challenge/bank-management/src/main/data/transactions.txt";
+    static String ACCOUNTS_FILE = "Bank-program-java-/src/main/data/accounts.txt";
+    static String TRANSACTIONS_FILE = "Bank-program-java-/src/main/data/transactions.txt";
     static Bank bank;
     public static void main(String[] args) {
         bank = new Bank();
         try {
             ArrayList<Account> acc = returnAccounts();
-            /*for (int i = 0; i < acc.size(); i++) {
-                System.out.print(i+1+".");
-                System.out.println("\t"+acc.get(i));
-            }*/
             loadAccounts(acc);
             ArrayList<Transaction> t = returnTransactions();
-            //Arrays.sort(t.toArray());
             runTransactions(t);
-            //System.out.println();
             bank.deductTaxes();
             for (Account account : acc) {
                 System.out.println("\n\t\t\t\t\t ACCOUNT\n\n\t"+account+"\n\n");
@@ -56,13 +50,6 @@ public class main2 {
                 return null;
         }
     }
-
-    /*The above function "createObject" can also be written like:
-    public static Account createAccount(String[] values) throws Exception{
-         return (Account)Class.forName("src.main.model.account." + values[0])
-               .getConstructor(String.class,String.class,double.class)
-               .newInstance(values[1],values[2],Double.valueOf(values[3]));
-    }*/
 
     public static ArrayList<Account> returnAccounts() throws FileNotFoundException{
         ArrayList<Account> acc_list = new ArrayList<Account>();
